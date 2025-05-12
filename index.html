@@ -1,0 +1,947 @@
+<<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мехатроника и робототехника</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#FF6B35", secondary: "#E63946" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Roboto', sans-serif;
+      }
+      .hero-gradient {
+      background: linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.3)), url('https://readdy.ai/api/search-image?query=futuristic%2520robotic%2520landscape%2520with%2520rusty%2520robots%2520and%2520advanced%2520machinery%2520in%2520a%2520dusty%2520environment%2520with%2520city%2520silhouettes%2520in%2520the%2520background%2C%2520warm%2520orange%2520and%2520red%2520tones%2C%2520atmospheric%2520lighting%2C%2520high%2520detail%2C%2520cinematic%2520composition&width=1200&height=600&seq=12345&orientation=landscape');
+      background-size: cover;
+      background-position: center right;
+      }
+      .card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+      }
+      .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+      }
+      .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -29px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #FF6B35;
+      border: 3px solid #1e1e1e;
+      }
+      .nav-link {
+      position: relative;
+      }
+      .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #FF6B35;
+      transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+      width: 100%;
+      }
+      .nav-link.active::after {
+      width: 100%;
+      }
+      input, textarea {
+      background-color: #2d2d2d;
+      border: 1px solid #444;
+      color: #e0e0e0;
+      }
+      input:focus, textarea:focus {
+      border-color: #FF6B35;
+      outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Навигация -->
+    <nav
+      class="fixed w-full bg-[#121212] bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-800"
+    >
+      <div
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <a
+            href="#home"
+            id="logo-link"
+            class="text-2xl font-['Pacifico'] text-primary hover:scale-110 hover:brightness-125 transition-all duration-300"
+            >Главная</a
+          >
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#about"
+            class="nav-link active text-gray-300 hover:text-primary transition-colors"
+            >О специальности</a
+          >
+          <a
+            href="#program"
+            class="nav-link text-gray-300 hover:text-primary transition-colors"
+            >Программа обучения</a
+          >
+          <a
+            href="#prospects"
+            class="nav-link text-gray-300 hover:text-primary transition-colors"
+            >Перспективы</a
+          >
+      
+              
+              
+             
+          <div
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 flex items-center justify-center text-gray-400"
+            >
+              
+            </div>
+          </div>
+          <div
+            class="flex items-center bg-[#1e1e1e] rounded-button overflow-hidden"
+          >
+            <button
+              onclick="switchLanguage('ru')"
+              class="language-btn active px-3 py-2 text-sm font-medium transition-colors"
+              data-lang="ru"
+            >
+              RU
+            </button>
+            <button
+              onclick="switchLanguage('en')"
+              class="language-btn px-3 py-2 text-sm font-medium transition-colors"
+              data-lang="en"
+            >
+              EN
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero секция -->
+    <section class="hero-gradient min-h-screen flex items-center pt-20" id="home">
+      <div class="container mx-auto px-6 py-16 w-full">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-10 md:mb-0">
+            <h1
+              class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white"
+            >
+              Мехатроника и робототехника
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">
+              Создавайте будущее с передовыми технологиями автоматизации и
+              робототехники
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- О специальности -->
+    <section id="about" class="py-20 bg-[#161616]">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">О специальности</h2>
+          <div class="w-20 h-1 bg-primary mx-auto"></div>
+        </div>
+        <div class="mb-16">
+          <p class="text-lg mb-6">
+            Это совершенно новая специальность, которая появилась в системе
+            среднего образования в 2017 году, и появилась она не случайно, ведь
+            мехатроника и робототехника – динамично развивающееся науки, совсем
+            недавно занявшие свое почетное место в современном мире. Их главная
+            цель заключается в создании и использовании машин, движущихся и
+            работающих на основе управления электронно-вычислительной техники.
+          </p>
+          <p class="text-lg mb-6">
+            Мехатроника и робототехника используются в станкостроении и создании
+            оборудования, которое автоматизирует промышленные линии; военной,
+            авиационной и космической технике; медицинской, офисной и бытовой
+            технике; робототехнике; автомобилестроении.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6"
+            >
+              <div
+                class="w-8 h-8 flex items-center justify-center text-primary"
+              >
+                <i class="ri-robot-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Мехатроника</h3>
+            <p class="text-gray-300">
+              Сфера, занимающаяся изучением объединенных компьютерных и
+              электротехнических компонентах, на основании которых проектируются
+              и создаются инновационные системы и машины.
+            </p>
+          </div>
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6"
+            >
+              <div
+                class="w-8 h-8 flex items-center justify-center text-primary"
+              >
+                <i class="ri-cpu-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Робототехника</h3>
+            <p class="text-gray-300">
+              Область, нацеленная на разработку и конструирование роботов и
+              систем, способных заменить труд человека и автоматизировать
+              сложные технологические процессы.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Области применения -->
+    <section class="py-20 bg-[#121212]">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Области применения
+          </h2>
+          <div class="w-20 h-1 bg-primary mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-factory-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Промышленность</h3>
+            <p class="text-gray-400">
+              Автоматизация производственных линий, станкостроение, конвейерные
+              системы
+            </p>
+          </div>
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-rocket-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Аэрокосмическая отрасль</h3>
+            <p class="text-gray-400">
+              Системы управления летательными аппаратами, космические роботы,
+              дроны
+            </p>
+          </div>
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-heart-pulse-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Медицина</h3>
+            <p class="text-gray-400">
+              Хирургические роботы, протезирование, диагностическое оборудование
+            </p>
+          </div>
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-car-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Автомобилестроение</h3>
+            <p class="text-gray-400">
+              Системы помощи водителю, автопилоты, электромобили
+            </p>
+          </div>
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-home-gear-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Бытовая техника</h3>
+            <p class="text-gray-400">
+              Умные дома, роботы-пылесосы, автоматизированные системы
+            </p>
+          </div>
+          <div class="card p-6 rounded-lg">
+            <div
+              class="w-14 h-14 flex items-center justify-center bg-primary bg-opacity-20 rounded-full mb-6"
+            >
+              <div
+                class="w-7 h-7 flex items-center justify-center text-primary"
+              >
+                <i class="ri-shield-line ri-xl"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Военная техника</h3>
+            <p class="text-gray-400">
+              Беспилотные аппараты, системы наведения, роботизированные
+              комплексы
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Программа обучения -->
+    <section id="program" class="py-20 bg-[#161616]">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Программа обучения
+          </h2>
+          <div class="w-20 h-1 bg-primary mx-auto"></div>
+          <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+            На этапе обучения воспитываются будущие специалисты высокого
+            класса, готовые работать с техническими системами, агрегатами и
+            комплексами, которые применяются для исполнения определенных функций
+            и управления устройствами.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-3"
+              >
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-white"
+                >
+                  <i class="ri-book-open-line"></i>
+                </div>
+              </div>
+              Основные дисциплины
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Основы мехатроника и робототехники</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt=0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Программирование микроконтроллеров</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w=6 h=6 flex items-center justify-center text-primary mt=0.5 mr=3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span> Электротехника и электроника</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Системы автоматического управления</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Компьютерное моделирование</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Проектирование мехатронных систем</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold mb-6 flex items-center">
+              <div
+                class="w-10 h-10 flex items-center justify-center bg-primary rounded-full mr-3"
+              >
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-white"
+                >
+                  <i class="ri-tools-line"></i>
+                </div>
+              </div>
+              Практические навыки
+            </h3>
+            <ul class="space-y=4">
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span
+                  >Проектирование и конструирование инновационных машин и
+                  роботов</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Программирование систем управления</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Монтаж и наладка мехатронных систем</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span
+                  >Техническое обслуживание робототехнических комплексов</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Разработка алгоритмов управления роботами</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-6 h-6 flex items-center justify-center text-primary mt-0.5 mr-3"
+                >
+                  <i class="ri-checkbox-circle-line"></i>
+                </div>
+                <span>Организационные и управленческие навыки</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-20">
+          <h3 class="text-2xl font-bold mb-10 text-center">
+            История развития специальности
+          </h3>
+          <div class="relative pl-8 border-l-2 border-gray-700 ml-4 md:ml-16">
+            <div class="timeline-item relative mb-12">
+              <h4 class="text-xl font-bold mb-2">2017</h4>
+              <p class="text-gray-300">
+                Появление специальности в системе среднего образования
+              </p>
+            </div>
+            <div class="timeline-item relative mb-12">
+              <h4 class="text-xl font-bold mb-2">2018</h4>
+              <p class="text-gray-300">
+                Разработка первых образовательных стандартов и программ
+              </p>
+            </div>
+            <div class="timeline-item relative mb-12">
+              <h4 class="text-xl font-bold mb-2">2020</h4>
+              <p class="text-gray-300">
+                Открытие специализированных лабораторий и мастерских
+              </p>
+            </div>
+            <div class="timeline-item relative mb-12">
+              <h4 class="text-xl font-bold mb-2">2022</h4>
+              <p class="text-gray-300">
+                Первые выпускники специальности, успешно трудоустроенные в
+                ведущие компании
+              </p>
+            </div>
+            <div class="timeline-item relative">
+              <h4 class="text-xl font-bold mb-2">2025</h4>
+              <p class="text-gray-300">
+                Расширение программы, включение новых направлений и технологий
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Перспективы трудоустройства -->
+    <section id="prospects" class="py=20 bg-[#161616]">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Перспективы трудоустройства
+          </h2>
+          <div class="w-20 h-1 bg-primary mx-auto"></div>
+          <p class="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
+            Областью деятельности выпускников по данной специальности является
+            организация и выполнение работ по монтажу, наладке, эксплуатации и
+            техническому обслуживанию мехатронных систем и мобильных
+            робототехнических комплексов.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6"
+            >
+              <div
+                class="w-8 h-8 flex items-center justify-center text-primary"
+              >
+                <i class="ri-building-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Ведущие компании</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Технологические корпорации</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Автомобильные концерны</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Аэрокосмические предприятия</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Медицинские компании</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Научно-исследовательские центра</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6"
+            >
+              <div
+                class="w-8 h-8 flex items-center justify-center text-primary"
+              >
+                <i class="ri-user-settings-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb=4">Востребованные профессии</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>IT-специалист</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Системный программист</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Инженер-мехатроник</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Электроник-конструктор</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Робототехник</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card p-8 rounded-lg">
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6"
+            >
+              <div
+                class="w-8 h-8 flex items-center justify-center text-primary"
+              >
+                <i class="ri-line-chart-line ri-2x"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Карьерный рост</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Начальная позиция: Техник</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Инженер-программист</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Ведущий специалист</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Руководитель проекта</span>
+              </li>
+              <li class="flex items-center">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-primary mr-3"
+                >
+                  <i class="ri-arrow-right-circle-line"></i>
+                </div>
+                <span>Технический директор</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-16 text-center">
+          <p class="text-lg text-gray-300 mb-8">
+           
+          </p>
+          
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <a
+              href="#home"
+              id="footer-logo-link"
+              class="text-2xl font-['Pacifico'] text-primary mb-4 inline-block hover:scale-110 hover:brightness-125 transition-all duration-300"
+              >Главная</a
+            >
+            <p class="text-gray-400 mb-6">
+               Подготовка специалистов в области мехатроника и робототехники с
+              2017 года
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  
+                </div>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  
+                </div>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-primary transition-colors"
+              >
+                <div class="w-6 h-6 flex items-center justify-center">
+                  
+                </div>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Навигация</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#about"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >О специальности</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#program"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Программа обучения</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#prospects"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Перспективы</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            
+              </li>
+            </ul>
+          </div>
+          <div>
+            
+              
+              
+                
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
+        >
+          <p>© 2025 ММР-23-4/4.</p>
+        </div>
+      </div>
+    </footer>
+    <style>
+      .language-btn {
+      color: #e0e0e0;
+      }
+      .language-btn:hover {
+      color: var(--primary-color);
+      }
+      .language-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const root = document.documentElement;
+        root.style.setProperty("--primary-color", "#FF6B35");
+        const translations = {
+          ru: {
+            about: "О специальности",
+            program: "Программа обучения",
+            prospects: "Перспективы",
+            heroTitle: "Мехатроника и робототехника",
+            heroSubtitle:
+              "Создавайте будущее с передовыми технологиями автоматизации и робототехники",
+            applyButton: "Подать заявку",
+            learnMoreButton: "Узнать больше",
+            // Add more translations as needed
+          },
+          en: {
+            about: "About",
+            program: "Program",
+            prospects: "Prospects",
+            heroTitle: "Mechatronics and Robotics",
+            heroSubtitle:
+              "Create the future with advanced automation and robotics technologies",
+            applyButton: "Apply Now",
+            learnMoreButton: "Learn More",
+            // Add more translations as needed
+          },
+        };
+        function switchLanguage(lang) {
+          const languageButtons = document.querySelectorAll(".language-btn");
+          languageButtons.forEach((btn) => {
+            btn.classList.remove("active");
+            if (btn.dataset.lang === lang) {
+              btn.classList.add("active");
+            }
+          });
+          // Update navigation links
+          document.querySelector('a[href="#about"]').textContent =
+            translations[lang].about;
+          document.querySelector('a[href="#program"]').textContent =
+            translations[lang].program;
+          document.querySelector('a[href="#prospects"]').textContent =
+            translations[lang].prospects;
+          // Update hero section
+          document.querySelector("h1").textContent = translations[lang].heroTitle;
+          document.querySelector("h1 + p").textContent =
+            translations[lang].heroSubtitle;
+          // Update buttons
+          const heroButtons = document.querySelectorAll(".hero-gradient button");
+          heroButtons[0].textContent = translations[lang].applyButton;
+          heroButtons[1].textContent = translations[lang].learnMoreButton;
+          // Store selected language
+          localStorage.setItem("selectedLanguage", lang);
+        }
+        // Set initial language based on stored preference or default to Russian
+        const storedLang = localStorage.getItem("selectedLanguage") || "ru";
+        switchLanguage(storedLang);
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") {
+              // Обработка клика по логотипу
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+              return;
+            }
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Активация пункта меню при скролле
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+        function highlightNavigation() {
+          const scrollPosition = window.scrollY + 100;
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute("id");
+            if (
+              scrollPosition >= sectionTop &&
+              scrollPosition < sectionTop + sectionHeight
+            ) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + sectionId) {
+                  link.classList.add("active");
+                }
+              });
+            }
+          });
+        }
+        window.addEventListener("scroll", highlightNavigation);
+      });
+    </script>
+  </body>
+</html>
